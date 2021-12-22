@@ -1,0 +1,30 @@
+name: Build + test `govuk-public-api-rules`
+
+on:
+  push:
+    paths:
+      - "govuk-public-api-rules/**"
+      - ".github/workflows/govuk-public-api-rules-ci.yml"
+  pull_request:
+    paths:
+      - "govuk-public-api-rules/**"
+      - ".github/workflows/govuk-public-api-rules-ci.yml"
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: govuk-public-api-rules
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+        cache: 'npm'
+        cache-dependency-path: govuk-public-api-rules/package-lock.json
+    - run: npm ci
+    - run: npm run lint
+    - run: npm test
