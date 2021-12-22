@@ -1,0 +1,30 @@
+name: Build + test `spectral-ruleset-govuk-public`
+
+on:
+  push:
+    paths:
+      - "govuk-public-api-rules/**"
+      - ".github/workflows/spectral-ruleset-govuk-public-ci.yml"
+  pull_request:
+    paths:
+      - "govuk-public-api-rules/**"
+      - ".github/workflows/spectral-ruleset-govuk-public-ci.yml"
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: spectral-ruleset-govuk-public
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+        cache: 'npm'
+        cache-dependency-path: spectral-ruleset-govuk-public/package-lock.json
+    - run: npm ci
+    - run: npm run lint
+    - run: npm test
