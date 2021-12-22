@@ -1,0 +1,22 @@
+{
+  "name": "govuk-public-api-rules",
+  "version": "0.1.0",
+  "description": "Spectral ruleset for public UK government APIs",
+  "main": "ruleset.yaml",
+  "license": "OGL-UK-3.0",
+  "devDependencies": {
+    "@jamietanna/spectral-test-harness": "^0.1.1",
+    "jest": "^27.4.5",
+    "standard": "^16.0.4"
+  },
+  "scripts": {
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "test": "jest"
+  },
+  "standard": {
+    "env": [
+      "jest"
+    ]
+  }
+}
