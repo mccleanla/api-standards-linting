@@ -1,2 +1,11 @@
 extends:
   - [spectral:oas, all]
+rules:
+  semver:
+    severity: error
+    given: $.info.version
+    message: 'Version can only contain numbers'
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([0-9]+.[0-9]+.[0-9]+)$"
