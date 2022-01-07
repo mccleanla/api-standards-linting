@@ -3,11 +3,11 @@ name: Build + test `spectral-ruleset-govuk-public`
 on:
   push:
     paths:
-      - "govuk-public-api-rules/**"
+      - "spectral-ruleset-govuk-public/**"
       - ".github/workflows/spectral-ruleset-govuk-public-ci.yml"
   pull_request:
     paths:
-      - "govuk-public-api-rules/**"
+      - "spectral-ruleset-govuk-public/**"
       - ".github/workflows/spectral-ruleset-govuk-public-ci.yml"
 
 jobs:
