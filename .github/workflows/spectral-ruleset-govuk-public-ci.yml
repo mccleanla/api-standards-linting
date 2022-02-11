@@ -10,6 +10,9 @@ on:
       - "spectral-ruleset-govuk-public/**"
       - ".github/workflows/spectral-ruleset-govuk-public-ci.yml"
 
+permissions:
+  contents: read
+
 jobs:
   build:
     defaults:
