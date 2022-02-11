@@ -10,6 +10,9 @@ on:
       - "spectral-ruleset-govuk-public/**"
       - ".github/workflows/spectral-ruleset-govuk-public-ci.yml"
 
+permissions:
+  contents: read
+
 jobs:
   build:
     defaults:
@@ -18,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
     - name: Use Node.js 16.x
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561
       with:
         node-version: '16.x'
         cache: 'npm'
@@ -35,14 +38,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
     - name: Use Node.js 16.x
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@1f8c6b94b26d0feae1e387ca63ccbdc44d27b561
       with:
         node-version: '16.x'
         cache: 'npm'
         cache-dependency-path: spectral-ruleset-govuk-public/package-lock.json
-    - uses: JS-DevTools/npm-publish@v1
+    - uses: JS-DevTools/npm-publish@0f451a94170d1699fd50710966d48fb26194d939
       with:
         package: spectral-ruleset-govuk-public/package.json
         access: public
