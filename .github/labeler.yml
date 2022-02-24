@@ -1,0 +1,6 @@
+'🔧 GitHub Configuration':
+  - '.github/**/*'
+'📁 Repo: spectral-ruleset-govuk-public':
+  - 'spectral-ruleset-govuk-public/**/*'
+'📚 Documentation':
+  - '**/*.md'
