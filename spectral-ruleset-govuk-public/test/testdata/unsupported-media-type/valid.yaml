@@ -1,0 +1,15 @@
+openapi: 3.1.0
+info:
+  title: ''
+  version: '1.0.0'
+paths:
+  "/":
+    put:
+      responses:
+        '415': {}
+    post:
+      responses:
+        '415': {}
+    patch:
+      responses:
+        '415': {}

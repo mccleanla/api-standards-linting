@@ -16,3 +16,10 @@ rules:
     then:
       field: "406"
       function: truthy
+  unsupported-media-type:
+    severity: error
+    given: "$.paths.[*][put,post,patch].responses"
+    description: "Resources that consume a request body must declare a response for an HTTP 415 Unsupported Media Type"
+    then:
+      field: "415"
+      function: truthy
