@@ -9,3 +9,17 @@ rules:
       function: pattern
       functionOptions:
         match: "^([0-9]+.[0-9]+.[0-9]+)$"
+  not-acceptable:
+    severity: error
+    given: "$.paths.[*][get,put,post,delete,patch].responses"
+    description: "Resources that can provide a response body must declare a response for an HTTP 406 Not Acceptable"
+    then:
+      field: "406"
+      function: truthy
+  unsupported-media-type:
+    severity: error
+    given: "$.paths.[*][put,post,patch].responses"
+    description: "Resources that consume a request body must declare a response for an HTTP 415 Unsupported Media Type"
+    then:
+      field: "415"
+      function: truthy
