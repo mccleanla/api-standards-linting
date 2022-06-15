@@ -1,0 +1,31 @@
+const { retrieveDocument, setupSpectral, getErrors } = require('@jamietanna/spectral-test-harness')
+
+describe('https', () => {
+  test('fails when http', async () => {
+    const spectral = await setupSpectral('ruleset.yaml')
+    const document = retrieveDocument('https/oas3/invalid-http.yaml')
+
+    const results = getErrors(await spectral.run(document))
+
+    expect(results).toHaveLength(1)
+    expect(results[0].message).toEqual('Servers must use the HTTPS protocol except when using localhost')
+  })
+
+  test('passes when http with localhost', async () => {
+    const spectral = await setupSpectral('ruleset.yaml')
+    const document = retrieveDocument('https/oas3/valid-localhost.yaml')
+
+    const results = getErrors(await spectral.run(document))
+
+    expect(results).toHaveLength(0)
+  })
+
+  test('passes when https', async () => {
+    const spectral = await setupSpectral('ruleset.yaml')
+    const document = retrieveDocument('https/oas3/valid.yaml')
+
+    const results = getErrors(await spectral.run(document))
+
+    expect(results).toHaveLength(0)
+  })
+})
