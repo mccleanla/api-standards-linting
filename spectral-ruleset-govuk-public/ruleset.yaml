@@ -23,3 +23,23 @@ rules:
     then:
       field: "415"
       function: truthy
+  oas3-always-use-https:
+    severity: error
+    message: Servers must use the HTTPS protocol except when using localhost
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "(http:\/\/localhost)|(https).*"
+    formats: ["oas3"]
+  oas2-always-use-https:
+    severity: error
+    given: "$.schemes.*"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - 'https'
+    message: Servers must use the HTTPS protocol
+    formats: ["oas2"]
+
