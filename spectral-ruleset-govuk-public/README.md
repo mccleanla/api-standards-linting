@@ -45,7 +45,7 @@ Then, when using the following `.spectral.yaml`:
 
 ```yaml
 extends:
-  - https://raw.githubusercontent.com/co-cddo/api-standards-linting/spectral-ruleset-govuk-public-v0.1.0/spectral-ruleset-govuk-public/ruleset.yaml
+  - https://raw.githubusercontent.com/co-cddo/api-standards-linting/spectral-ruleset-govuk-public-v0.3.0/spectral-ruleset-govuk-public/ruleset.yaml
 formats:
   - "oas3.1"
 ```
