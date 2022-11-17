@@ -42,4 +42,21 @@ rules:
           - 'https'
     message: Servers must use the HTTPS protocol
     formats: ["oas2"]
-
+  no-x-headers:
+    severity: error
+    message: Headers should not use the X- prefix
+    given: "$..parameters[?(@.in === 'header')].name"
+    then:
+      function: pattern
+      functionOptions:
+        match:
+          "^([^xX]|.[^-])"
+  no-x-response-headers:
+    severity: error
+    message: Headers should not use the X- prefix
+    given: "$..headers.*~"
+    then:
+      function: pattern
+      functionOptions:
+        match:
+          "^([^xX]|.[^-])"
