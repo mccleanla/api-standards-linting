@@ -1,6 +1,6 @@
 {
   "name": "@govuk-data-standards/spectral-ruleset-govuk-public",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Spectral ruleset for public UK government APIs",
   "main": "ruleset.yaml",
   "license": "OGL-UK-3.0",

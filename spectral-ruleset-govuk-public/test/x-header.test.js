@@ -1,11 +1,11 @@
-const { retrieveDocument, setupSpectral, getErrors, resultsForCode } = require('@jamietanna/spectral-test-harness')
+const { retrieveDocument, setupSpectral, resultsForCode } = require('@jamietanna/spectral-test-harness')
 
 describe('X- headers', () => {
   test('fails when request headers starts with X-', async () => {
     const spectral = await setupSpectral('ruleset.yaml')
     const document = retrieveDocument('x-header/invalid-request.yaml')
 
-    const results = getErrors(await spectral.run(document))
+    const results = resultsForCode(await spectral.run(document), 'no-x-headers')
 
     expect(results).toHaveLength(1)
     expect(results[0].message).toEqual('Headers should not use the X- prefix')
@@ -15,7 +15,7 @@ describe('X- headers', () => {
     const spectral = await setupSpectral('ruleset.yaml')
     const document = retrieveDocument('x-header/valid-request.yaml')
 
-    const results = getErrors(await spectral.run(document))
+    const results = resultsForCode(await spectral.run(document), 'no-x-headers')
 
     expect(results).toHaveLength(0)
   })
