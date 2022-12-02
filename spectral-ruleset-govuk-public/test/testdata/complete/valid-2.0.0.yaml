@@ -2,4 +2,10 @@ swagger: '2.0'
 info:
   title: ''
   version: '1.0.0'
+  description: 'A description of the API'
+  contact: {
+    "name": "API Support",
+    "url": "https://www.example.com/support",
+    "email": "support@example.com"
+  }
 paths: {}
