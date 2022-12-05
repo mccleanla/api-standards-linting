@@ -74,3 +74,11 @@ rules:
     then:
       field: "info.contact"
       function: truthy
+  domain-name:
+    severity: error
+    given: "$.servers[*].url"
+    description: "The domain name must be between 3 and 63 characters long, and contain only alphanumeric characters (0-9 and a-z) and the ‘-’ (dash) symbol. It should also use dashes between words to make your domain easy to read - for example, vehicle-registration-number.api.gov.uk."
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\\.[a-zA-Z]{2,})+$"

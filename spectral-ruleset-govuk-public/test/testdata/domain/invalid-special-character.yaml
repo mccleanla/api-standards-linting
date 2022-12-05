@@ -1,0 +1,7 @@
+openapi: 3.1.0
+info:
+  title: ''
+  version: '1.0.0'
+paths: {}
+servers:
+  - url: 'vehicle-registration-number-*.api.gov.uk'
