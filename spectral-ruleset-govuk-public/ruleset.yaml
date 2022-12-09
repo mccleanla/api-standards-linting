@@ -74,11 +74,19 @@ rules:
     then:
       field: "info.contact"
       function: truthy
-  domain-name:
+  domain-name-length:
     severity: error
     given: "$.servers[*].url"
-    description: "The domain name must be between 3 and 63 characters long, and contain only alphanumeric characters (0-9 and a-z) and the ‘-’ (dash) symbol. It should also use dashes between words to make your domain easy to read - for example, vehicle-registration-number.api.gov.uk."
+    description: "The domain name must be between 3 and 63 characters long."
     then:
       function: pattern
       functionOptions:
-        match: "^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\\.[a-zA-Z]{2,})+$"
+        match: '(http:\/\/localhost$)|(https:\/\/([^\.]{3,63}\.)+[^\.]{2,63}$)'
+  domain-name-characters:
+    severity: error
+    given: "$.servers[*].url"
+    description: "The domain name must contain only alphanumeric characters (0-9 and a-z) and the ‘-’ (dash) symbol."
+    then:
+      function: pattern
+      functionOptions:
+        match: '(http:\/\/localhost$)|(https:\/\/([a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9]\.)+([a-zA-Z]{2,})$)'

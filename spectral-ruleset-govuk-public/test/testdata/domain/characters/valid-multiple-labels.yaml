@@ -4,4 +4,4 @@ info:
   version: '1.0.0'
 paths: {}
 servers:
-  - url: 'https://vehicle-registration-number.api.gov.uk'
+  - url: 'https://vehicle.registration-number.api.gov.uk'

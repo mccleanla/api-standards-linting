@@ -4,4 +4,4 @@ info:
   version: '1.0.0'
 paths: {}
 servers:
-  - url: 've.api.gov.uk'
+  - url: 'https://ve.api.gov.uk'
