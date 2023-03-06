@@ -1,8 +1,11 @@
 {
   "name": "@govuk-data-standards/spectral-ruleset-govuk-public",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Spectral ruleset for public UK government APIs",
   "main": "ruleset.yaml",
+  "files": [
+    "ruleset-*.yaml"
+  ],
   "license": "OGL-UK-3.0",
   "devDependencies": {
     "@jamietanna/spectral-test-harness": "^0.2.0",
