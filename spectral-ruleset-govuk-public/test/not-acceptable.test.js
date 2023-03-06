@@ -2,7 +2,7 @@ const { retrieveDocument, setupSpectral, resultsForCode } = require('@jamietanna
 
 describe('not-acceptable', () => {
   async function isNotRequired (method) {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-high.yaml')
     const document = retrieveDocument(`not-acceptable/absent-${method}.yaml`)
 
     const results = resultsForCode(await spectral.run(document), 'not-acceptable')
@@ -11,7 +11,7 @@ describe('not-acceptable', () => {
   }
 
   async function isRequired (method) {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-high.yaml')
     const document = retrieveDocument(`not-acceptable/absent-${method}.yaml`)
 
     const results = resultsForCode(await spectral.run(document), 'not-acceptable')
@@ -37,7 +37,7 @@ describe('not-acceptable', () => {
   })
 
   test('passes when 406 is present', async () => {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-high.yaml')
     const document = retrieveDocument('not-acceptable/valid.yaml')
 
     const results = resultsForCode(await spectral.run(document), 'not-acceptable')

@@ -2,7 +2,7 @@ const { retrieveDocument, setupSpectral, resultsForCode } = require('@jamietanna
 
 describe('unsupported-media-type', () => {
   async function isNotRequired (method) {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-high.yaml')
     const document = retrieveDocument(`unsupported-media-type/absent-${method}.yaml`)
 
     const results = resultsForCode(await spectral.run(document), 'unsupported-media-type')
@@ -11,7 +11,7 @@ describe('unsupported-media-type', () => {
   }
 
   async function isRequired (method) {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-high.yaml')
     const document = retrieveDocument(`unsupported-media-type/absent-${method}.yaml`)
 
     const results = resultsForCode(await spectral.run(document), 'unsupported-media-type')
@@ -37,7 +37,7 @@ describe('unsupported-media-type', () => {
   })
 
   test('passes when 415 is present', async () => {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-high.yaml')
     const document = retrieveDocument('unsupported-media-type/valid.yaml')
 
     const results = resultsForCode(await spectral.run(document), 'unsupported-media-type')

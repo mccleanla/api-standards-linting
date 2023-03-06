@@ -2,7 +2,7 @@ const { retrieveDocument, setupSpectral, resultsForCode } = require('@jamietanna
 
 describe('semver', () => {
   test('fails when not a number', async () => {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-medium.yaml')
     const document = retrieveDocument('semver/invalid-letters.yaml')
 
     const results = resultsForCode(await spectral.run(document), 'semver')
@@ -12,7 +12,7 @@ describe('semver', () => {
   })
 
   test('fails when empty', async () => {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-medium.yaml')
     const document = retrieveDocument('semver/invalid-empty.yaml')
 
     const results = resultsForCode(await spectral.run(document), 'semver')
@@ -21,7 +21,7 @@ describe('semver', () => {
   })
 
   test('fails when there is a major and minor version but no patch', async () => {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-medium.yaml')
     const document = retrieveDocument('semver/invalid-no-patch.yaml')
 
     const results = resultsForCode(await spectral.run(document), 'semver')
@@ -30,7 +30,7 @@ describe('semver', () => {
   })
 
   test('passes when numbers have multiple digits', async () => {
-    const spectral = await setupSpectral('ruleset.yaml')
+    const spectral = await setupSpectral('ruleset-medium.yaml')
     const document = retrieveDocument('semver/valid-complex-number.yaml')
 
     const results = resultsForCode(await spectral.run(document), 'semver')
