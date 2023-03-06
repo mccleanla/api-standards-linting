@@ -6,4 +6,3 @@ paths:
   /path_parameter:
     get:
       summary: Checks if the server is alive
-      operationId: ping

@@ -28,4 +28,14 @@ describe('oas3', () => {
 
     expect(results).toHaveLength(0)
   })
+
+  test('oas3-strict fails when oas version is 3.0.0', async () => {
+    const spectral = await setupSpectral('ruleset-high.yaml')
+    const document = retrieveDocument('oas3/3.0.0.yaml')
+
+    const results = resultsForCode(await spectral.run(document), 'oas3-strict')
+
+    expect(results).toHaveLength(1)
+    expect(results[0].message).toEqual('OpenAPI version must be 3.1.0')
+  })
 })
