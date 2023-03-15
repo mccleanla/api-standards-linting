@@ -1,69 +1,87 @@
 extends:
   - [spectral:oas, all]
 rules:
+
   oas3-always-use-https:
     severity: error
-    message: Servers must use the HTTPS protocol except when using localhost
+    message: Servers MUST be https and no other protocol is allowed, except when using localhost
+    description:
+        "Using http in production is reckless, advised against by OWASP API Security, and generally unnecessary thanks to free SSL on loads of hosts, gateways like Cloudflare, and OSS tools like Lets Encrypt."
     given: "$.servers[*].url"
     then:
       function: pattern
       functionOptions:
         match: "(http:\/\/localhost)|(https).*"
     formats: ["oas3"]
+    
   oas2-always-use-https:
     severity: error
+    message:  Schemes MUST be https and no other protocol is allowed.l
+    description:
+        "Using http in production is reckless, advised against by OWASP API Security, and generally unnecessary thanks to free SSL on loads of hosts, gateways like Cloudflare, and OSS tools like Lets Encrypt.",
     given: "$.schemes.*"
     then:
       function: enumeration
       functionOptions:
         values:
           - 'https'
-    message: Servers must use the HTTPS protocol
     formats: ["oas2"]
+    
   no-x-headers:
     severity: error
-    message: Headers should not use the X- prefix
+    message: "Headers starting with X- is an awkward convention which is entirely unnecessary. There is probably a standard for what you're trying to do, so it would be better to use that. If there is not a standard already perhaps there's a draft that you could help mature through use and feedback.\n\nSee what you can find on https://standards.rest.\n\nMore about X- headers here: https://tools.ietf.org/html/rfc6648.","
+    description:
     given: "$..parameters[?(@.in === 'header')].name"
     then:
       function: pattern
       functionOptions:
         match:
           "^([^xX]|.[^-])"
+          
   no-x-response-headers:
     severity: error
-    message: Headers should not use the X- prefix
+    message:  "Headers starting with X- is an awkward convention which is entirely unnecessary. There is probably a standard for what you're trying to do, so it would be better to use that. If there is not a standard already perhaps there's a draft that you could help mature through use and feedback.\n\nSee what you can find on https://standards.rest.\n\nMore about X- headers here: https://tools.ietf.org/html/rfc6648.","
+    description:
     given: "$..headers.*~"
     then:
       function: pattern
       functionOptions:
         match:
           "^([^xX]|.[^-])"
-  description:
+     
+    cddo-description:
     severity: error
-    given: "$"
+    message:  "The info object must contain a description"
     description: "The info object must contain a description"
+    given: "$"
     then:
       field: "info.description"
       function: truthy
-  contact:
-    severity: error
-    given: "$"
-    description: "The info object must contain either a contact email or contact url"
+ 
+  cddo-contact:
+   severity: error
+   message:  "The info object must contain either a contact email or contact url"
+   description: "The info object must contain either a contact email or contact url"
+       given: "$"
     then:
       field: "info.contact"
       function: truthy
-  domain-name-length:
+ 
+ domain-name-length:
     severity: error
-    given: "$.servers[*].url"
+    message:  "The domain name must be between 3 and 63 characters long."
     description: "The domain name must be between 3 and 63 characters long."
+    given: "$.servers[*].url"
     then:
       function: pattern
       functionOptions:
         match: '(http:\/\/localhost$)|(https:\/\/([^\.]{3,63}\.)+[^\.]{2,63}$)'
+  
   domain-name-characters:
     severity: error
-    given: "$.servers[*].url"
+    message:  "The domain name must be between 3 and 63 characters long."
     description: "The domain name must contain only alphanumeric characters (0-9 and a-z) and the ‘-’ (dash) symbol."
+    given: "$.servers[*].url"
     then:
       function: pattern
       functionOptions:
